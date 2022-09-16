@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "487202905654",
+    "project_id": "health-buddy-6b820",
+    "storage_bucket": "health-buddy-6b820.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:487202905654:android:ffc428dfcdf05e4b048297",
+        "android_client_info": {
+          "package_name": "com.talhaiqbal.healthbuddy.health_buddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "487202905654-qrpeas73mgsfpjtbst1iqbci512u24ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf-NzpyU8hDyZV8ram4-cDj3dWJQ2tDKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "487202905654-qrpeas73mgsfpjtbst1iqbci512u24ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

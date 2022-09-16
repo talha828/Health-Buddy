@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/firebase/database.dart';
 import 'package:health_buddy/screens/signup_screen/view.dart';
 import 'package:health_buddy/widgets/health_button.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
@@ -14,11 +16,18 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController email=TextEditingController();
-  TextEditingController password=TextEditingController();
-  String login="Login Now";
-  bool? checkBox =true;
-  bool isLoading =false;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  String login = "Login Now";
+  bool? checkBox = true;
+  bool isLoading = false;
+  setLoading(bool value){
+   setState(() {
+    isLoading=value;
+   });
+  }
+  
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -32,54 +41,112 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                 height: height,
                 padding: EdgeInsets.all(width * 0.1),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SvgPicture.asset("assets/image/login.svg",width: width * 0.4,height: width * 0.4,),
-                    Text(
-                      "Login",
-                      style: TextStyle(
-                        color: Colors.redAccent,
-                          fontWeight: FontWeight.bold, fontSize: width * 0.08),
-                    ),
-                    HealthTextField(email: email, login: "Email", width: width),
-                    HealthTextField(email: email, login: "Password", width: width),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Checkbox(value: checkBox, onChanged: (value){
-                              setState(() {
-                                checkBox=value;
-                              });
-                            }),
-                            Text("Remember Me?")
-                          ],
-                        ),
-                        Text("Forget Password?")
-                      ],
-                    ),
-                    HealthButton(width: width, login: login),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Create New Account?  ",style: TextStyle(color: Colors.grey),),
-                        InkWell(
-                            onTap: ()=>Get.to(const SignUpScreen()),
-                            child:const Text("SignUp",style: TextStyle(color: Colors.blue,decoration: TextDecoration.underline),)),
-                      ],
-                    )
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/image/login.svg",
+                        width: width * 0.4,
+                        height: width * 0.4,
+                      ),
+                      Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: width * 0.08),
+                      ),
+                      HealthTextField(
+                        email: email,
+                        width: width,
+                        obscureText: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your Email';
+                          }
+                          return null;
+                        },
+                        hintText: "Email",
+                      ),
+                      HealthTextField(
+                        email: password,
+                        width: width,
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your Password';
+                          }
+                          return null;
+                        },
+                        hintText: "Password",
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                  value: checkBox,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      checkBox = value;
+                                    });
+                                  }),
+                              Text(
+                                "Remember Me?",
+                                style: TextStyle(fontSize: width * 0.035),
+                              )
+                            ],
+                          ),
+                          Text(
+                            "Forget Password?",
+                            style: TextStyle(fontSize: width * 0.035),
+                          )
+                        ],
+                      ),
+                      HealthButton(
+                        width: width,
+                        login: login,
+                        onTap: ()async{
+                          setLoading(true);
+                          if(_formKey.currentState!.validate()){
+                            await Database.login(email.text, password.text.toString()).then((value) => setLoading(false)).catchError((e){
+                              setLoading(false);
+                              Fluttertoast.showToast(msg: "something went wrong");
+                            });
+                          }
+                        }
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Create New Account?  ",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          InkWell(
+                            onTap: () => Get.to(const SignUpScreen()),
+                            child: const Text(
+                              "SignUp",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-            isLoading?const Positioned.fill(child: LoadingIndicator()):Container()
+            isLoading ?const Positioned.fill(child: LoadingIndicator()) : Container()
           ],
         ),
       ),
     );
   }
 }
-
