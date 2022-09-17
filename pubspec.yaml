@@ -44,6 +44,7 @@ dependencies:
   firebase_database: ^9.1.4
   firebase_storage: ^10.3.8
   shared_preferences: ^2.0.15
+  appinio_swiper: ^1.1.0
 
 dev_dependencies:
   flutter_test:

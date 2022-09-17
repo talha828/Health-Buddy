@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:scaled_list/scaled_list.dart';
@@ -43,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: <Widget>[
-              UserAccountsDrawerHeader(
+              const UserAccountsDrawerHeader(
                 accountName: Text("Talha Iqbal",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 accountEmail: Text("talhaiqbal246@gmail.com",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 currentAccountPicture: CircleAvatar(
@@ -122,7 +123,7 @@ class _MainScreenState extends State<MainScreen> {
                               child: Image.asset(
                                 category.image,
                                 color: Colors.white,
-                                width: width * 0.2,
+                                width: width * 0.3,
                               ),
                             ),
                             Text(
@@ -159,6 +160,7 @@ class _MainScreenState extends State<MainScreen> {
                         return Column(
                           children: [
                             ListTile(
+                              onTap:()=>Get.to(()=>CoachesMenu()),
                               title: Text(
                                 coaches[index],
                                 style: const TextStyle(
@@ -194,7 +196,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
 
   final List<Category> categories = [
-    Category(image: "assets/image/gym_friends.png", name: "Buddy Gym"),
+    Category(image: "assets/image/gym_friends.png", name: "Gym Buddy "),
     Category(image: "assets/image/walking_dog.png", name: "Walking Dog"),
     Category(image: "assets/image/walking.png", name: "Dessert"),
     Category(image: "assets/image/diet.png", name: "Lamb"),
