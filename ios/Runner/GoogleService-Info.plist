@@ -30,5 +30,21 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:487202905654:ios:a55a7016eefdf180048297</string>
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>comgooglemaps</string>
+        <string>baidumap</string>
+        <string>iosamap</string>
+        <string>waze</string>
+        <string>yandexmaps</string>
+        <string>yandexnavi</string>
+        <string>citymapper</string>
+        <string>mapswithme</string>
+        <string>osmandmaps</string>
+        <string>dgis</string>
+        <string>qqmap</string>
+        <string>here-location</string>
+        <string>tomtomgo</string>
+    </array>
 </dict>
 </plist>

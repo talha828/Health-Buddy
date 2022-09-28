@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
+import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:scaled_list/scaled_list.dart';
@@ -113,29 +114,32 @@ class _MainScreenState extends State<MainScreen> {
                     },
                     itemBuilder: (index, selectedIndex) {
                       final category = categories[index];
-                      return Container(
-                        padding: EdgeInsets.symmetric(vertical: width * 0.02),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              height: selectedIndex == index ? 100 : 50,
-                              child: Image.asset(
-                                category.image,
-                                color: Colors.white,
-                                width: width * 0.3,
-                              ),
-                            ),
-                            Text(
-                              category.name,
-                              style: TextStyle(
+                      return InkWell(
+                        onTap: ()=>Get.to(GymBuddiesScreen()),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: width * 0.02),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: selectedIndex == index ? 100 : 50,
+                                child: Image.asset(
+                                  category.image,
                                   color: Colors.white,
-                                  fontWeight: selectedIndex == index
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                  fontSize: selectedIndex == index ? 20 : 15),
-                            )
-                          ],
+                                  width: width * 0.3,
+                                ),
+                              ),
+                              Text(
+                                category.name,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: selectedIndex == index
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                    fontSize: selectedIndex == index ? 20 : 15),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },
