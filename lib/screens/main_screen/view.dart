@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
+import 'package:health_buddy/screens/create_post_screen/view.dart';
 import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
@@ -57,25 +58,26 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.home), title: Text("Home"),
+                leading:const Icon(Icons.home), title:const Text("Home"),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.settings), title: Text("Settings"),
+                leading:const Icon(Icons.settings), title:const Text("Create Post"),
+                onTap: () {
+                  Get.to(const CreatePostScreen());
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading:const Icon(Icons.contacts), title:const Text("Contact Us"),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.contacts), title: Text("Contact Us"),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.logout), title: Text("Logout"),
+                leading:const Icon(Icons.logout), title:const Text("Logout"),
                 onTap: ()async {
                   Navigator.pop(context);
                   final prefs=await SharedPreferences.getInstance();
@@ -115,7 +117,7 @@ class _MainScreenState extends State<MainScreen> {
                     itemBuilder: (index, selectedIndex) {
                       final category = categories[index];
                       return InkWell(
-                        onTap: ()=>Get.to(GymBuddiesScreen()),
+                        onTap: ()=>Get.to(const GymBuddiesScreen()),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: width * 0.02),
                           child: Column(
@@ -164,7 +166,7 @@ class _MainScreenState extends State<MainScreen> {
                         return Column(
                           children: [
                             ListTile(
-                              onTap:()=>Get.to(()=>CoachesMenu()),
+                              onTap:()=>Get.to(const CoachesMenu()),
                               title: Text(
                                 coaches[index],
                                 style: const TextStyle(

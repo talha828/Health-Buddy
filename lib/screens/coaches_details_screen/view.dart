@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:health_buddy/screens/chat_room_screen/view.dart';
 
 class CoachesDetailsScreen extends StatefulWidget {
   const CoachesDetailsScreen({Key? key}) : super(key: key);
@@ -13,7 +15,6 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
@@ -43,7 +44,7 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                 children: [
                   TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0, end: 1),
-                      duration: Duration(milliseconds: 1500),
+                      duration:const Duration(milliseconds: 1500),
                       builder: (context, double value, child) {
                         return Text(
                           "Talha Iqbal",
@@ -56,7 +57,7 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                       }),
                   TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0.09, end: 0.07),
-                      duration: Duration(milliseconds: 1500),
+                      duration:const Duration(milliseconds: 1500),
                       builder: (context, double value, child) {
                         return SizedBox(
                           height: width * value,
@@ -64,7 +65,7 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                       }),
                   TweenAnimationBuilder(  
                       tween: Tween<double>(begin: 0, end: 1),
-                      duration: Duration(milliseconds: 1000),
+                      duration:const Duration(milliseconds: 1000),
                       builder: (context, double value, child) {
                         return Text(
                           "A Hello, World! program is generally a computer program that ignores any input and outputs or displays a message similar to Hello, World!. A small piece of code in most general-purpose programming languages, this program is used to illustrate a language's basic syntax. Hello, World! programs are often the first a student learns to write in a given language,[1] and they can also be used as a sanity check to ensure computer software intended to compile or run source code is correctly installed, and that its operator understands how to use it.",
@@ -76,7 +77,7 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                   ),
                   TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0, end: 1),
-                      duration: Duration(milliseconds: 1000),
+                      duration:const Duration(milliseconds: 1000),
                       builder: (context, double value, child) {
                         return Text(
                           "Karachi, Pakistan",
@@ -85,7 +86,7 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                       }),
                   TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0.09, end: 0.07),
-                      duration: Duration(milliseconds: 1500),
+                      duration:const Duration(milliseconds: 1500),
                       builder: (context, double value, child) {
                         return SizedBox(
                           height: width * value,
@@ -93,18 +94,21 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                       }),
                   Row(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                        color: Colors.red,
-                         borderRadius: BorderRadius.circular(width * 0.01)
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: width * 0.02,horizontal: width * 0.04),
-                        child: Row(
-                          children: [
-                            Text("Chat Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                            SizedBox(width: width * 0.02,),
-                            Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,size: width * 0.05,)
-                          ],
+                      InkWell(
+                        onTap: ()=>Get.to(const ChatRoomScreen()),
+                        child: Container(
+                          decoration: BoxDecoration(
+                          color: Colors.red,
+                           borderRadius: BorderRadius.circular(width * 0.01)
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: width * 0.02,horizontal: width * 0.04),
+                          child: Row(
+                            children: [
+                              const Text("Chat Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                              SizedBox(width: width * 0.02,),
+                              Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,size: width * 0.05,)
+                            ],
+                          ),
                         ),
                       ),
                     ],

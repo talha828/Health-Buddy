@@ -15,11 +15,11 @@ class GymBuddiesScreen extends StatefulWidget {
 class _GymBuddiesScreenState extends State<GymBuddiesScreen> {
   List<CoachesCardModel> card = [
     CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore  10 mints later ", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
-    CoachesCardModel(title: "Talha Iqbal", desc: "park  . town       5hr left", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
-    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
-    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
-    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
-    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 1),
+    CoachesCardModel(title: "Talha Iqbal", desc: "park  .           5hr left", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 2),
+    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 3),
+    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 4),
+    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 5),
+    CoachesCardModel(title: "Talha Iqbal", desc: "Karachi  . Lahore", town: "Karachi, Pakistan", image: "assets/image/talha.jpg", heroTag: 6),
   ];
   @override
   Widget build(BuildContext context) {

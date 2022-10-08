@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:health_buddy/screens/chatDetailsScreen/view.dart';
 
 class ChatRoomScreen extends StatefulWidget {
   const ChatRoomScreen({Key? key}) : super(key: key);
@@ -21,14 +23,17 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            leading: Icon(
+            leading:const Icon(
               Icons.arrow_back_ios,
               color: Colors.red,
             ),
             centerTitle: true,
-            title: Text(
-              "Talha Iqbal",
-              style: TextStyle(color: Colors.red),
+            title: InkWell(
+              onTap: ()=>Get.to(const ChatDetailsScreen()),
+              child:const Text(
+                "Talha Iqbal",
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ),
           body: Container(
