@@ -46,8 +46,11 @@ dependencies:
   shared_preferences: ^2.0.15
   appinio_swiper: ^1.1.0
   map_launcher: ^2.4.0
-  google_maps_flutter: ^2.2.1
-  flutter_place_picker: ^0.0.1-dev.4
+  permission_handler: ^10.1.0
+  geocoding: ^2.0.5
+  flutter_google_location_picker: ^0.0.3
+  rflutter_alert: ^2.0.4
+  geolocator: ^9.0.2
 
 
 dev_dependencies:

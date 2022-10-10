@@ -10,6 +10,7 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
+  final Key _mapKey = UniqueKey();
   @override
   Widget build(BuildContext context) {
     var width=MediaQuery.of(context).size.width;
@@ -23,7 +24,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         padding: EdgeInsets.symmetric(horizontal: width *0.02,vertical: width *0.02),
         child: ListView(
           children: list.map((e) => ListTile(
-            onTap: ()=>Get.to(const SetLocationScreen()),
+            onTap: ()=>Get.to(SetLocationScreen(key:_mapKey,)),
             shape: Border(
               bottom: BorderSide(color: Color(0xff797979).withOpacity(0.5) ,width: 2),
             ),
