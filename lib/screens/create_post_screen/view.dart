@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:health_buddy/screens/set_location_screen/view.dart';
+import 'package:health_buddy/screens/set_current_location_screen/view.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);
@@ -10,6 +11,28 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    return await Geolocator.getCurrentPosition();
+  }
   final Key _mapKey = UniqueKey();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +47,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         padding: EdgeInsets.symmetric(horizontal: width *0.02,vertical: width *0.02),
         child: ListView(
           children: list.map((e) => ListTile(
-            onTap: ()=>Get.to(SetLocationScreen(key:_mapKey,)),
+            onTap: ()async{
+
+              Get.to(SetCurrentLocationScreen(key:_mapKey));},
             shape: Border(
               bottom: BorderSide(color: Color(0xff797979).withOpacity(0.5) ,width: 2),
             ),
