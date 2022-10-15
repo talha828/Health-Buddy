@@ -38,10 +38,11 @@ dependencies:
   get: ^4.6.5
   flutter_svg: ^1.1.5
   scaled_list: ^2.0.0
-  fluttertoast: ^8.0.9
+  fluttertoast: 8.0.2
   firebase_auth: ^3.8.0
   firebase_core: ^1.22.0
   firebase_database: ^9.1.4
+  cloud_firestore: ^3.5.1
   firebase_storage: ^10.3.8
   shared_preferences: ^2.0.15
   appinio_swiper: ^1.1.0

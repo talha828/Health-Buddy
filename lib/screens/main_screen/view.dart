@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/my_followers_screen/view.dart';
 import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
 import 'package:health_buddy/screens/create_post_screen/view.dart';
 import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
@@ -64,9 +65,16 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               ListTile(
-                leading:const Icon(Icons.settings), title:const Text("Create Post"),
+                leading:const Icon(Icons.post_add), title:const Text("Create Post"),
                 onTap: () {
                   Get.to(const CreatePostScreen());
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading:const Icon(Icons.follow_the_signs), title:const Text("My Followers"),
+                onTap: () {
+                  Get.to(const MyFollowersScreen());
                   //Navigator.pop(context);
                 },
               ),

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/followers_list_scren/view.dart';
 import 'package:health_buddy/screens/set_current_location_screen/view.dart';
 
-class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen({Key? key}) : super(key: key);
+class MyFollowersScreen extends StatefulWidget {
+  const MyFollowersScreen({Key? key}) : super(key: key);
 
   @override
-  State<CreatePostScreen> createState() => _CreatePostScreenState();
+  State<MyFollowersScreen> createState() => _MyFollowersScreenState();
 }
 
-class _CreatePostScreenState extends State<CreatePostScreen> {
+class _MyFollowersScreenState extends State<MyFollowersScreen> {
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -41,22 +42,23 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(icon:const Icon(Icons.arrow_back_ios),onPressed: ()=>Navigator.pop(context),),
-        title:const Text("Create Post",style: TextStyle(color: Colors.red),),
+        title:const Text("Category",style: TextStyle(color: Colors.red),),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: width *0.02,vertical: width *0.02),
-        child: ListView(
-          children: list.map((e) => ListTile(
-            onTap: ()async{
-              //TODO values to controllers......
-              Get.to(SetCurrentLocationScreen(key:_mapKey));},
-            shape: Border(
-              bottom: BorderSide(color:const Color(0xff797979).withOpacity(0.5) ,width: 2),
-            ),
-            title: Text(e),
-            trailing:const Icon(Icons.arrow_forward_ios_outlined),
-          )).toList(),
-        )
+          padding: EdgeInsets.symmetric(horizontal: width *0.02,vertical: width *0.02),
+          child: ListView(
+            children: list.map((e) => ListTile(
+              onTap: ()async{
+
+                Get.to(MyFollowersListScreen(key:_mapKey));
+                },
+              shape: Border(
+                bottom: BorderSide(color:const Color(0xff797979).withOpacity(0.5) ,width: 2),
+              ),
+              title: Text(e),
+              trailing:const Icon(Icons.arrow_forward_ios_outlined),
+            )).toList(),
+          )
       ),
     ));
   }
