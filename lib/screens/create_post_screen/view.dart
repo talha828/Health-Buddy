@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/model/create_post_model.dart';
+import 'package:health_buddy/model/user_model.dart';
 import 'package:health_buddy/screens/set_current_location_screen/view.dart';
 
 class CreatePostScreen extends StatefulWidget {
@@ -11,6 +13,9 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
+
+  final createPostDetails=Get.put(CreatePost());
+  final userDetails=Get.find<UserDetails>();
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -48,7 +53,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         child: ListView(
           children: list.map((e) => ListTile(
             onTap: ()async{
-              //TODO values to controllers......
+              createPostDetails.name.value=userDetails.name.value;
+              createPostDetails.type.value=e.toString();
               Get.to(SetCurrentLocationScreen(key:_mapKey));},
             shape: Border(
               bottom: BorderSide(color:const Color(0xff797979).withOpacity(0.5) ,width: 2),

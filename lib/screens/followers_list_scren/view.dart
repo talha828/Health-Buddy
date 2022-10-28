@@ -45,7 +45,7 @@ class _MyFollowersListScreenState extends State<MyFollowersListScreen> {
                   leading: CircleAvatar(
                     backgroundColor: Colors.red,
                     radius: width * 0.05,
-                    child: Text(list[index].substring(0,1),style:TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                    child: Text(list[index].substring(0,1),style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                   ),
                   title: Text(list[index]),
                   trailing: Container(
@@ -53,7 +53,7 @@ class _MyFollowersListScreenState extends State<MyFollowersListScreen> {
                       borderRadius: BorderRadius.circular(width * 0.01),
                     color:i==0?Colors.red:Colors.grey,),
                     padding: EdgeInsets.symmetric(horizontal: width * 0.04,vertical: width * 0.02,),
-                    child: Text("Pick Me",style: TextStyle(color: Colors.white),),
+                    child:const Text("Pick Me",style: TextStyle(color: Colors.white),),
                   ),
                 ),
               );

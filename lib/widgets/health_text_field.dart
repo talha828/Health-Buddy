@@ -23,10 +23,13 @@ class HealthTextField extends StatelessWidget {
       controller: email,
       obscureText:obscureText,
       decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
           hintText: hintText,
           filled: true,
           fillColor: Colors.grey.shade300,
-          border: InputBorder.none,
           focusedBorder: InputBorder.none,
           contentPadding: EdgeInsets.symmetric(horizontal: width * 0.04)),
     );

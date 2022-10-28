@@ -3,8 +3,9 @@ import 'package:flutter_google_location_picker/export.dart';
 import 'package:flutter_google_location_picker/flutter_google_location_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/model/create_post_model.dart';
 import 'package:health_buddy/screens/post_time_details_screen/view.dart';
-import 'package:health_buddy/screens/temp.dart';
+
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 
@@ -19,6 +20,7 @@ class SetFinalLocationScreen extends StatefulWidget {
 }
 
 class _SetFinalLocationScreenState extends State<SetFinalLocationScreen> {
+  final createPostDetails=Get.find<CreatePost>();
   Future<LatLong> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -61,7 +63,9 @@ class _SetFinalLocationScreenState extends State<SetFinalLocationScreen> {
             return FlutterGoogleLocationPicker(
               center:LatLong(latitude:snapshot.data!.latitude,longitude:snapshot.data!.longitude),
               onPicked:(value){
-                Get.to(const PostFinalDetailsScreen());
+                createPostDetails.toAddress.value=value.displayName.toString();
+                createPostDetails.toLatLong.value=LatLong(latitude: value.lat, longitude: value.lon);
+                Get.to(const PostTimeDetailsScreen());
                 //print(value.address);
               },
               buttonWidget:Container(

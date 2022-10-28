@@ -106,7 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         setLoading(true);
                         if (_formKey.currentState!.validate()) {
                           if(password.text==confirmPassword.text){
-                            await Database.signUp(name.text, email.text, password.text.toString()).then((value){
+                            await Database.signUp(name.text, email.text.trim(), password.text.trim().toString()).then((value){
                               setLoading(false);
                              // Get.to(const MainScreen());
                             });

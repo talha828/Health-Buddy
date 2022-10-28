@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:health_buddy/followers_list_scren/view.dart';
 import 'package:health_buddy/screens/set_current_location_screen/view.dart';
+
+import '../followers_list_scren/view.dart';
 
 class MyFollowersScreen extends StatefulWidget {
   const MyFollowersScreen({Key? key}) : super(key: key);

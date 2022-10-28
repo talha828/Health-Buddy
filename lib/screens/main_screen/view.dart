@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:health_buddy/my_followers_screen/view.dart';
+import 'package:health_buddy/model/user_model.dart';
 import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
 import 'package:health_buddy/screens/create_post_screen/view.dart';
 import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
+import 'package:health_buddy/screens/i_am_trainer_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
+import 'package:health_buddy/screens/my_followers_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:scaled_list/scaled_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +20,9 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   bool isLoading = false;
+  final userDetails=Get.find<UserDetails>();
   List<String> coaches = ["Dog Training", "Dieting Training", "Counselling"];
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -47,14 +51,14 @@ class _MainScreenState extends State<MainScreen> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: <Widget>[
-              const UserAccountsDrawerHeader(
-                accountName: Text("Talha Iqbal",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                accountEmail: Text("talhaiqbal246@gmail.com",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+               UserAccountsDrawerHeader(
+                accountName: Text(userDetails.name.value,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                accountEmail: Text(userDetails.email.value,style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 currentAccountPicture: CircleAvatar(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: Colors.white,
                   child: Text(
-                    "T",
-                    style: TextStyle(fontSize: 40.0),
+                    userDetails.name.value.substring(0,1),
+                    style: TextStyle(fontSize: 40.0,color: Colors.red),
                   ),
                 ),
               ),
@@ -75,6 +79,13 @@ class _MainScreenState extends State<MainScreen> {
                 leading:const Icon(Icons.follow_the_signs), title:const Text("My Followers"),
                 onTap: () {
                   Get.to(const MyFollowersScreen());
+                  //Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading:const Icon(Icons.follow_the_signs), title:const Text("I am Trainer"),
+                onTap: () {
+                 Get.to(const IamTrainerScreen());
                   //Navigator.pop(context);
                 },
               ),

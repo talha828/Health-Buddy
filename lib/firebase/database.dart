@@ -23,7 +23,8 @@ class Database{
         prefs.setString("email", email);
         prefs.setString("password", password);
         Get.to(const MainScreen());});
-    }).catchError((e){Fluttertoast.showToast(msg: "something went wrong");});
+    }).catchError((e){
+      Fluttertoast.showToast(msg: "Error: ${e.toString()}");});
     return true;
   }
   static Future<bool>login(String email,String password,)async{
