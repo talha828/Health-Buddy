@@ -7,6 +7,7 @@ import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
 import 'package:health_buddy/screens/i_am_trainer_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
 import 'package:health_buddy/screens/my_followers_screen/view.dart';
+import 'package:health_buddy/screens/view_posts_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:scaled_list/scaled_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
                   backgroundColor: Colors.white,
                   child: Text(
                     userDetails.name.value.substring(0,1),
-                    style: TextStyle(fontSize: 40.0,color: Colors.red),
+                    style: const TextStyle(fontSize: 40.0,color: Colors.red),
                   ),
                 ),
               ),
@@ -136,7 +137,7 @@ class _MainScreenState extends State<MainScreen> {
                     itemBuilder: (index, selectedIndex) {
                       final category = categories[index];
                       return InkWell(
-                        onTap: ()=>Get.to(const GymBuddiesScreen()),
+                        onTap: ()=>Get.to(const ViewPostsScreen()),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: width * 0.02),
                           child: Column(

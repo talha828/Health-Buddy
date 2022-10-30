@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/model/create_post_model.dart';
 import 'package:health_buddy/model/user_model.dart';
 import 'package:health_buddy/screens/main_screen/view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,4 +49,29 @@ class Database{
     });
     return true;
   }
+  static Future<bool> createPost(CreatePost  createPostDetails)async{
+
+    var database = FirebaseFirestore.instance.collection("posts");
+    await database
+        .doc(createPostDetails.type.value)
+        .collection(createPostDetails.type.value)
+        .doc()
+        .set({
+      "name": createPostDetails.name.value,
+      "type": createPostDetails.type.value,
+      "fromAddress": createPostDetails.fromAddress.value,
+      "toAddress": createPostDetails.toAddress.value,
+      "fromTime": createPostDetails.fromTime.value.toString(),
+      "toTime": createPostDetails.toTime.value.toString(),
+      "fromLatLong": GeoPoint(
+          createPostDetails.fromLatLong.value.latitude,
+          createPostDetails.fromLatLong.value.longitude),
+      "toLatLong": GeoPoint(
+          createPostDetails.toLatLong.value.latitude,
+          createPostDetails.toLatLong.value.longitude),
+      "timestamp": DateTime.now().microsecondsSinceEpoch
+    });
+    return true;
+  }
+
 }
