@@ -5,13 +5,15 @@ class FollowMeCard extends StatelessWidget {
   const FollowMeCard({
     Key? key,
     required this.width,
-    required this.onTap,
+    required this.showRoute,
     required this.createPostDetails,
+    required this.follow,
   }) : super(key: key);
 
   final double width;
   final CreatePostModel createPostDetails;
-  final Function()? onTap;
+  final Function()? showRoute;
+  final Function()? follow;
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +110,12 @@ class FollowMeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.fromTime.toString().replaceAll("TimeOfDay(","")} : ${createPostDetails.fromTime.toString().replaceAll("TimeOfDay(","")}",
+                  "${createPostDetails.fromTime}",
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
               Text(
-                "To",
+                " : ",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.red,
@@ -128,7 +130,7 @@ class FollowMeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.toTime.toString().replaceAll("TimeOfDay(","")} : ${createPostDetails.toTime.toString().replaceAll("TimeOfDay(","")}",
+                  "${createPostDetails.toTime}",
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -139,7 +141,7 @@ class FollowMeCard extends StatelessWidget {
           ),
           SizedBox(height: width * 0.02),
           InkWell(
-            onTap: onTap,
+            onTap: showRoute,
             child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -149,7 +151,23 @@ class FollowMeCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     vertical: width * 0.02, horizontal: width * 0.04),
                 child: const Text(
-                  "Follow Me",
+                  "Show Route",
+                  style: TextStyle(color: Colors.white),
+                )),
+          ),
+          SizedBox(height: width * 0.02),
+          InkWell(
+            onTap: showRoute,
+            child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(width * 0.02),
+                ),
+                padding: EdgeInsets.symmetric(
+                    vertical: width * 0.02, horizontal: width * 0.04),
+                child: const Text(
+                  "Follow Route",
                   style: TextStyle(color: Colors.white),
                 )),
           ),

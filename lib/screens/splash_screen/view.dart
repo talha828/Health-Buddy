@@ -20,12 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
     final prefs = await SharedPreferences.getInstance();
     var email = prefs.getString("email");
     var password = prefs.getString("password");
-    if (email != null && password != null) {
+    if (email.toString() != "null" && password.toString() != "null") {
       await Database.login(email.toString(), password.toString())
           .then((value) => Get.to(() => const MainScreen()))
           .catchError(
         (e) {
-          Fluttertoast.showToast(msg: "something went wrong");
+          print(e.message);
+          Fluttertoast.showToast(msg: "Error: ${e.message}");
         },
       );
     } else {

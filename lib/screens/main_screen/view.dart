@@ -37,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
               padding: EdgeInsets.symmetric(horizontal: width * 0.02),
               child: const Icon(
                 Icons.notifications_none_outlined,
+                color: Colors.white,
               ),
             )
           ],
@@ -53,12 +54,12 @@ class _MainScreenState extends State<MainScreen> {
             padding: EdgeInsets.zero,
             children: <Widget>[
                UserAccountsDrawerHeader(
-                accountName: Text(userDetails.name.value,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                accountName: Text(userDetails.name.value.toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 accountEmail: Text(userDetails.email.value,style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Text(
-                    userDetails.name.value.substring(0,1),
+                    userDetails.name.value.substring(0,1).toUpperCase(),
                     style: const TextStyle(fontSize: 40.0,color: Colors.red),
                   ),
                 ),
@@ -170,7 +171,7 @@ class _MainScreenState extends State<MainScreen> {
                     padding: EdgeInsets.symmetric(
                         horizontal: width * 0.06, vertical: width * 0.02),
                     child: Text(
-                      "Coaches",
+                      "Trainers",
                       style: TextStyle(
                         fontSize: width * 0.06,
                         fontWeight: FontWeight.bold,

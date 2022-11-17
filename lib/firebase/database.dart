@@ -50,7 +50,7 @@ class Database{
     return true;
   }
   static Future<bool> createPost(CreatePost  createPostDetails)async{
-
+    FirebaseAuth auth= FirebaseAuth.instance;
     var database = FirebaseFirestore.instance.collection("posts");
     await database
         .doc(createPostDetails.type.value)
@@ -59,6 +59,7 @@ class Database{
         .set({
       "name": createPostDetails.name.value,
       "type": createPostDetails.type.value,
+      "uid":auth.currentUser!.uid,
       "fromAddress": createPostDetails.fromAddress.value,
       "toAddress": createPostDetails.toAddress.value,
       "fromTime": createPostDetails.fromTime.value.toString(),

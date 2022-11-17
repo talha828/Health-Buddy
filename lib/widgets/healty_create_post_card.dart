@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:health_buddy/model/create_post_model.dart';
-
+import 'package:intl/intl.dart';
+var f=DateFormat('dd-MM-yyyy hh:mm');
 class CreatePostCard extends StatelessWidget {
-  const CreatePostCard({
+   CreatePostCard({
     Key? key,
     required this.width,
     required this.onTap,
@@ -108,12 +109,13 @@ class CreatePostCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.fromTime.value.hour.toString()} : ${createPostDetails.fromTime.value.minute.toString()}",
-                  style: const TextStyle(color: Colors.white),
+                  convertTime(createPostDetails.fromTime.value)
+                  //"${createPostDetails.fromTime.value.hour.toString()} : ${createPostDetails.fromTime.value.minute.toString()}",
+                  ,style: const TextStyle(color: Colors.white),
                 ),
               ),
               Text(
-                "To",
+                " : ",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.red,
@@ -128,8 +130,9 @@ class CreatePostCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.toTime.value.hour.toString()} : ${createPostDetails.toTime.value.minute.toString()}",
-                  style: const TextStyle(color: Colors.white),
+                  convertTime(createPostDetails.toTime.value)
+                  //"${createPostDetails.toTime.value.hour.toString()} : ${createPostDetails.toTime.value.minute.toString()}",
+                  ,style: const TextStyle(color: Colors.white),
                 ),
               ),
             ],
@@ -158,4 +161,6 @@ class CreatePostCard extends StatelessWidget {
       ),
     );
   }
+  String convertTime(int timestamp)=> f.format(DateTime.fromMillisecondsSinceEpoch(timestamp)).substring(0,16);
 }
+

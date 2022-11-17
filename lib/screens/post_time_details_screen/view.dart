@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/create_post_model.dart';
 import 'package:health_buddy/screens/confirm_post_screen/confirm_post_screen.dart';
+import 'package:intl/intl.dart';
 
 class PostTimeDetailsScreen extends StatefulWidget {
   const PostTimeDetailsScreen({Key? key}) : super(key: key);
@@ -73,10 +74,9 @@ class _PostTimeDetailsScreenState extends State<PostTimeDetailsScreen> {
                         minuteInterval: MinuteInterval.FIVE,
                         // Optional onChange to receive value as DateTime
                         onChangeDateTime: (DateTime dateTime) {
-                          print(_time.hour.toString() + ":"+_time.minute.toString());
-                          createPostDetails.fromTime.value=_time;
-                          debugPrint("[debug datetime]:  $dateTime");
-                          print("[debug datetime]:  $dateTime");
+                          debugPrint(dateTime.millisecondsSinceEpoch.toString());
+                          debugPrint(_time.hour.toString() + ":"+_time.minute.toString());
+                          createPostDetails.fromTime.value=dateTime.millisecondsSinceEpoch;
                         },
                       ),
                     );
@@ -107,10 +107,8 @@ class _PostTimeDetailsScreenState extends State<PostTimeDetailsScreen> {
                         minuteInterval: MinuteInterval.FIVE,
                         // Optional onChange to receive value as DateTime
                         onChangeDateTime: (DateTime dateTime) {
-                          createPostDetails.toTime.value=_time2;
+                          createPostDetails.toTime.value=dateTime.millisecondsSinceEpoch;
                           print(_time2.hour.toString() + ":"+_time2.minute.toString());
-                          debugPrint("[debug datetime]:  $dateTime");
-                          print("[debug datetime]:  $dateTime");
                         },
                       ),
                     );

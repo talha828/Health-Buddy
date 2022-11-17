@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -115,7 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           if(_formKey.currentState!.validate()){
                             await Database.login(email.text, password.text.toString()).then((value) => setLoading(false)).catchError((e){
                               setLoading(false);
-                              Fluttertoast.showToast(msg: "something went wrong");
+                              print(e.message.toString());
+                              Fluttertoast.showToast(msg: "Error: ${e.message}");
                             });
                           }
                         }
