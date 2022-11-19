@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/create_post_model.dart';
-import 'package:health_buddy/screens/confirm_post_screen/confirm_post_screen.dart';
+import 'package:health_buddy/screens/activity_posts/confirm_post_screen/confirm_post_screen.dart';
 import 'package:intl/intl.dart';
 
 class PostTimeDetailsScreen extends StatefulWidget {

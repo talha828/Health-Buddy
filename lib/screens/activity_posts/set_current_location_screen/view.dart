@@ -4,7 +4,7 @@ import 'package:flutter_google_location_picker/flutter_google_location_picker.da
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/create_post_model.dart';
-import 'package:health_buddy/screens/set_final_location_screen/view.dart';
+import 'package:health_buddy/screens/activity_posts/set_final_location_screen/view.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SetCurrentLocationScreen extends StatefulWidget {

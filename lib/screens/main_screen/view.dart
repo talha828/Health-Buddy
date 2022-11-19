@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/user_model.dart';
 import 'package:health_buddy/screens/caoches_menu_screen/view.dart';
-import 'package:health_buddy/screens/create_post_screen/view.dart';
 import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
 import 'package:health_buddy/screens/i_am_trainer_screen/view.dart';
 import 'package:health_buddy/screens/login_screen/view.dart';
 import 'package:health_buddy/screens/my_followers_screen/view.dart';
+import 'package:health_buddy/screens/posts_reels_screens/chose_option_screen/view.dart';
 import 'package:health_buddy/screens/view_posts_screen/view.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:scaled_list/scaled_list.dart';
@@ -71,19 +71,13 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
               ListTile(
-                leading:const Icon(Icons.post_add), title:const Text("Create Post"),
+                leading:const Icon(Icons.post_add), title:const Text("Post"),
                 onTap: () {
-                  Get.to(const CreatePostScreen());
+                  Get.to(const ChoseOptionScreen());
                   //Navigator.pop(context);
                 },
               ),
-              ListTile(
-                leading:const Icon(Icons.follow_the_signs), title:const Text("My Followers"),
-                onTap: () {
-                  Get.to(const MyFollowersScreen());
-                  //Navigator.pop(context);
-                },
-              ),
+
               ListTile(
                 leading:const Icon(Icons.follow_the_signs), title:const Text("I am Trainer"),
                 onTap: () {

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_widget/google_maps_widget.dart';
 import 'package:health_buddy/model/create_post_model.dart';
-import 'package:health_buddy/screens/show_route_screen/view.dart';
 import 'package:health_buddy/widgets/health_follow_me_card.dart';
 import 'package:health_buddy/widgets/healty_create_post_card.dart';
+
+import '../activity_posts/show_route_screen/view.dart';
 
 class ViewPostsScreen extends StatefulWidget {
   const ViewPostsScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _ViewPostsScreenState extends State<ViewPostsScreen> {
   @override
   Widget build(BuildContext context) {
     CollectionReference posts = FirebaseFirestore.instance
-        .collection('posts')
+        .collection('activity_posts')
         .doc("Gym Buddy")
         .collection("Gym Buddy");
     var width = MediaQuery.of(context).size.width;

@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/create_post_model.dart';
 import 'package:health_buddy/model/user_model.dart';
-import 'package:health_buddy/screens/set_current_location_screen/view.dart';
+import 'package:health_buddy/screens/activity_posts/set_current_location_screen/view.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);
