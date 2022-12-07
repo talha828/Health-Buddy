@@ -11,13 +11,13 @@ class CreatePostCard extends StatelessWidget {
   }) : super(key: key);
 
   final double width;
-  final CreatePost createPostDetails;
+  final PostController createPostDetails;
   final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(width * 0.04),
+      padding: EdgeInsets.all(width * 0.03),
       decoration: BoxDecoration(
           color: Colors.red.withOpacity(0.1),
           borderRadius: BorderRadius.circular(width * 0.02),
@@ -29,7 +29,7 @@ class CreatePostCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                createPostDetails.name.value,
+                createPostDetails.userName.value.toUpperCase(),
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.red,

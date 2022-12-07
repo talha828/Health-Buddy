@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_google_location_picker/export.dart';
 import 'package:get/get.dart';
 
-class CreatePost extends GetxController{
-  RxString name ="".obs;
+class PostController extends GetxController{
+  RxString userName ="".obs;
   RxString type="".obs;
   RxString fromAddress="".obs;
   RxString toAddress="".obs;
@@ -25,6 +25,6 @@ class CreatePostModel {
   GeoPoint fromLatLong;
   GeoPoint toLatLong;
   int timestamp;
-
-  CreatePostModel({required this.name,required this.type,required this.fromAddress,required this.toAddress,required this.fromTime,required this.fromLatLong,required this.toLatLong,required this.timestamp,required this.toTime});
+  int followers;
+  CreatePostModel({required this.name,required this.followers,required this.type,required this.fromAddress,required this.toAddress,required this.fromTime,required this.fromLatLong,required this.toLatLong,required this.timestamp,required this.toTime});
 }

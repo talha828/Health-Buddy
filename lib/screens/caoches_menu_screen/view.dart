@@ -70,80 +70,110 @@ class _CoachesMenuState extends State<CoachesMenu> {
             ),
           ),
         ),
-        body: Column(
+        body: ListView.separated(itemBuilder: (index,context){
+          return ListTile(
+            onTap: ()=>Get.to(const CoachesDetailsScreen()),
+            leading:const CircleAvatar(
+                child: Icon(Icons.person,color: Colors.red,),
+            ),
+            title:const Text("Talha Iqbal",),
+            subtitle:const Text("Karachi, pakistan"),
+            trailing: Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(7)
+              ),
+              width: width * 0.25,
+              child: Row(
+                children:const [
+                   Padding(
+                    padding:  EdgeInsets.all(7.0),
+                    child: Text("Details",style: TextStyle(color: Colors.white,),),
+                  ),
+                  Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,)
+                ],
+              ),
+            ),
+
+          );
+        }, separatorBuilder: (context,index){
+          return SizedBox(height: width *0.04,);
+        }, itemCount: 10)
+
+        /*Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(width * 0.5)),
-              height: height * 0.7,
-              width: width,
-              child: AppinioSwiper(
-                  onTapDisabled:()=>Get.to(()=>CoachesDetailsScreen()),
-                  unlimitedUnswipe: true,
-                  onSwipe: (index, detectedDirection) {
-                    if(detectedDirection==AppinioSwiperDirection.right){
-                      Get.to(()=>CoachesDetailsScreen());
-                    }
-                  },
-                  key: UniqueKey(),
-                  cards: card
-                      .map((e) => Container(
-                            height: width * 0.5,
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                boxShadow:const [
-                                  BoxShadow(
-                                      color: Colors.black38,
-                                      offset: Offset(0, 3),
-                                      blurRadius: 7),
-                                ],
-                                borderRadius:
-                                    BorderRadius.circular(width * 0.02)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                    child: Hero(
-                                      tag: e.heroTag.toString(),
-                                      child: InkWell(
-                                        onTap: ()=>Get.to(()=>CoachesDetailsScreen()),
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(vertical: width * 0.09,horizontal: width * 0.09),
-                                            child: SvgPicture.asset(
-                                  e.image.toString(),
-                                  width: width * 0.5,
-                                  height: width * 0.5,
-                                )),
-                                      ),
-                                    )),
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: width *0.05,vertical: width * 0.03),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                            bottomLeft:
-                                                Radius.circular(width * 0.02),
-                                            bottomRight:
-                                                Radius.circular(width * 0.02))),
-                                    height: width * 0.32,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                                      children: [
-                                        Text(e.title.toString(),overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(fontSize: width * 0.05,fontWeight: FontWeight.bold),),
-                                        Text(e.desc.toString(),overflow: TextOverflow.ellipsis,maxLines: 2,style: TextStyle(fontSize: width * 0.03),),
-                                        Text(e.town.toString(),overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(fontSize: width * 0.03),),
-                                      ],
-                                    ))
-                              ],
-                            ),
-                          ))
-                      .toList()),
-            ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(width * 0.5)),
+            //   height: height * 0.7,
+            //   width: width,
+            //   child: AppinioSwiper(
+            //       onTapDisabled:()=>Get.to(()=>CoachesDetailsScreen()),
+            //       unlimitedUnswipe: true,
+            //       onSwipe: (index, detectedDirection) {
+            //         if(detectedDirection==AppinioSwiperDirection.right){
+            //           Get.to(()=>CoachesDetailsScreen());
+            //         }
+            //       },
+            //       key: UniqueKey(),
+            //       cards: card
+            //           .map((e) => Container(
+            //                 height: width * 0.5,
+            //                 decoration: BoxDecoration(
+            //                     color: Colors.red,
+            //                     boxShadow:const [
+            //                       BoxShadow(
+            //                           color: Colors.black38,
+            //                           offset: Offset(0, 3),
+            //                           blurRadius: 7),
+            //                     ],
+            //                     borderRadius:
+            //                         BorderRadius.circular(width * 0.02)),
+            //                 child: Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.stretch,
+            //                   children: [
+            //                     Expanded(
+            //                         child: Hero(
+            //                           tag: e.heroTag.toString(),
+            //                           child: InkWell(
+            //                             onTap: ()=>Get.to(()=>CoachesDetailsScreen()),
+            //                             child: Container(
+            //                               padding: EdgeInsets.symmetric(vertical: width * 0.09,horizontal: width * 0.09),
+            //                                 child: SvgPicture.asset(
+            //                       e.image.toString(),
+            //                       width: width * 0.5,
+            //                       height: width * 0.5,
+            //                     )),
+            //                           ),
+            //                         )),
+            //                     Container(
+            //                       padding: EdgeInsets.symmetric(horizontal: width *0.05,vertical: width * 0.03),
+            //                         decoration: BoxDecoration(
+            //                             color: Colors.white,
+            //                             borderRadius: BorderRadius.only(
+            //                                 bottomLeft:
+            //                                     Radius.circular(width * 0.02),
+            //                                 bottomRight:
+            //                                     Radius.circular(width * 0.02))),
+            //                         height: width * 0.32,
+            //                         child: Column(
+            //                           crossAxisAlignment: CrossAxisAlignment.start,
+            //                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //
+            //                           children: [
+            //                             Text(e.title.toString(),overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(fontSize: width * 0.05,fontWeight: FontWeight.bold),),
+            //                             Text(e.desc.toString(),overflow: TextOverflow.ellipsis,maxLines: 2,style: TextStyle(fontSize: width * 0.03),),
+            //                             Text(e.town.toString(),overflow: TextOverflow.ellipsis,maxLines: 1,style: TextStyle(fontSize: width * 0.03),),
+            //                           ],
+            //                         ))
+            //                   ],
+            //                 ),
+            //               ))
+            //           .toList()),
+            // ),
           ],
-        ),
+        ),*/
       ),
     );
   }

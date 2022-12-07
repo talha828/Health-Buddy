@@ -18,7 +18,7 @@ class SetCurrentLocationScreen extends StatefulWidget {
 }
 
 class _SetCurrentLocationScreenState extends State<SetCurrentLocationScreen> {
-  final createpostDetails=Get.find<CreatePost>();
+  final createpostDetails=Get.find<PostController>();
   Future<LatLong> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -40,6 +40,7 @@ class _SetCurrentLocationScreenState extends State<SetCurrentLocationScreen> {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
     var position = await Geolocator.getCurrentPosition();
+    print(position.latitude);
     return LatLong(latitude: position.latitude, longitude: position.longitude);
   }
 
@@ -71,7 +72,7 @@ class _SetCurrentLocationScreenState extends State<SetCurrentLocationScreen> {
                   latitude: snapshot.data!.latitude,
                   longitude: snapshot.data!.longitude),
               onPicked: (value) {
-               // print(value.displayName);
+                print(value.displayName);
 
                 createpostDetails.fromAddress.value=value.displayName.toString();
                 createpostDetails.fromLatLong.value=LatLong(latitude: value.lat, longitude: value.lon);

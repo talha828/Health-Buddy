@@ -1,8 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/controller/payment_controller.dart';
 import 'package:health_buddy/screens/chat_room_screen/view.dart';
+import 'package:health_buddy/screens/payment_screen/view.dart';
 
 class CoachesDetailsScreen extends StatefulWidget {
   const CoachesDetailsScreen({Key? key}) : super(key: key);
@@ -14,6 +18,7 @@ class CoachesDetailsScreen extends StatefulWidget {
 class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final PaymentController controller = Get.put(PaymentController());
     var width = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
@@ -95,7 +100,56 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                   Row(
                     children: [
                       InkWell(
-                        onTap: ()=>Get.to(const ChatRoomScreen()),
+                        onTap: () {
+                          // controller.makePayment(amount: '5', currency: 'USD').catchError((e)=>print(e));
+                          Get.to(PaymentScreen());
+                          // createPaymentMethod(params: PaymentMethodParams.card(paymentMethodData:PaymentMethodData(
+                          //   billingDetails: BillingDetails(
+                          //     address: Address(
+                          //       city: "Karachi",
+                          //       country: "Pakistan",
+                          //       line1:"karachi pakistan" ,
+                          //       line2: "karachi pakistan",
+                          //       state: "Sindhi",
+                          //       postalCode: "77550",
+                          //     ),
+                          //     email:"talhaiqbal246@gmail.com" ,
+                          //     phone: "+923012070920",
+                          //     name: "talha iqbal",
+                          //   ),
+                          //   shippingDetails: ShippingDetails(
+                          //     address: Address(
+                          //       city: "Karachi",
+                          //       country: "Pakistan",
+                          //       line1:"karachi pakistan" ,
+                          //       line2: "karachi pakistan",
+                          //       state: "Sindhi",
+                          //       postalCode: "77550",
+                          //     ),
+                          //   ),
+                          // )));
+                          // AwesomeDialog(
+                          //   context: context,
+                          //   dialogType: DialogType.infoReverse,
+                          //   animType: AnimType.rightSlide,
+                          //   title: 'Payment',
+                          //   desc: 'Your first need to pay to unlock chat',
+                          //   btnOkColor: Colors.red,
+                          //   btnOkOnPress: () async{
+                          //
+                          //     //final paymentMethod =
+                          //     //await Stripe.instance.presentPaymentSheet().catchError((e)=>print(e.toString()));
+                          //     // Get.snackbar('Payment', 'Payment Successful',
+                          //     //     snackPosition: SnackPosition.BOTTOM,
+                          //     //     backgroundColor: Colors.green,
+                          //     //     colorText: Colors.white,
+                          //     //     margin: const EdgeInsets.all(10),
+                          //     //     duration: const Duration(seconds: 2));
+                          //   },
+                          // )
+                          //   .show();
+                          //Get.to(const ChatRoomScreen());
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                           color: Colors.red,
@@ -106,13 +160,13 @@ class _CoachesDetailsScreenState extends State<CoachesDetailsScreen> {
                             children: [
                               const Text("Chat Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                               SizedBox(width: width * 0.02,),
-                              Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,size: width * 0.05,)
+                              Icon(Icons.lock,color: Colors.white,size: width * 0.05,)
                             ],
                           ),
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

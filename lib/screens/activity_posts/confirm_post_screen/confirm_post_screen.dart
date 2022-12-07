@@ -15,7 +15,13 @@ class ConfirmPostScreen extends StatefulWidget {
 }
 
 class _ConfirmPostScreenState extends State<ConfirmPostScreen> {
-  final createPostDetails = Get.find<CreatePost>();
+  final createPostDetails = Get.find<PostController>();
+  bool isLoading=false;
+  void setLoading(bool value){
+    setState(() {
+      isLoading=value;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -32,34 +38,48 @@ class _ConfirmPostScreenState extends State<ConfirmPostScreen> {
             style: TextStyle(color: Colors.red),
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: width * 0.04, horizontal: width * 0.04),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              //create post card
-              CreatePostCard(
-                width: width,
-                createPostDetails: createPostDetails,
-                onTap: () => Database.createPost(createPostDetails)
-                    .then((value) => AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.success,
-                          animType: AnimType.rightSlide,
-                          title: 'Congratulation',
-                          desc: 'Your post successfully created',
-                          btnOkColor: Colors.red,
-                          btnOkOnPress: () {
-                            Get.to(const MainScreen());
-                          },
-                        )..show())
-                    .catchError((e) {
-                  Fluttertoast.showToast(msg: "Error: ${e.toString()}");
-                }),
-              )
-            ],
-          ),
+        body: Stack(
+
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                  vertical: width * 0.04, horizontal: width * 0.04),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  //create post card
+                  CreatePostCard(
+                    width: width,
+                    createPostDetails: createPostDetails,
+                    onTap: () {
+                      setLoading(true);
+                      Database.createPost(createPostDetails)
+                          .then((value) =>
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.success,
+                        animType: AnimType.rightSlide,
+                        title: 'Congratulation',
+                        desc: 'Your post successfully created',
+                        btnOkColor: Colors.red,
+                        btnOkOnPress: () {
+                          setLoading(false);
+                          Get.to(const MainScreen());
+                        },
+                      )
+                        ..show())
+                          .catchError((e) {
+                        setLoading(false);
+                        Fluttertoast.showToast(msg: "Error: ${e.toString()}");
+                      });
+
+                    }
+                  )
+                ],
+              ),
+            ),
+            isLoading?Positioned.fill(child:Container(color: Colors.black54,child:Center(child: const CircularProgressIndicator()),)):Container()
+          ],
         ),
       ),
     );

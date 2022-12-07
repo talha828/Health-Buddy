@@ -14,8 +14,8 @@ class CreatePostScreen extends StatefulWidget {
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
 
-  final createPostDetails=Get.put(CreatePost());
-  final userDetails=Get.find<UserDetails>();
+  final createPostDetails=Get.put(PostController());
+  final userDetails=Get.find<UserController>();
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -53,7 +53,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         child: ListView(
           children: list.map((e) => ListTile(
             onTap: ()async{
-              createPostDetails.name.value=userDetails.name.value;
+              createPostDetails.userName.value=userDetails.name.value;
               createPostDetails.type.value=e.toString();
               Get.to(SetCurrentLocationScreen(key:_mapKey));},
             shape: Border(

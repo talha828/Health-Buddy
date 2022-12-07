@@ -30,7 +30,7 @@ class FollowMeCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                createPostDetails.name,
+                createPostDetails.name.toUpperCase(),
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.red,
@@ -110,7 +110,7 @@ class FollowMeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.fromTime}",
+                  createPostDetails.fromTime,
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -130,7 +130,7 @@ class FollowMeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(width * 0.02),
                 ),
                 child: Text(
-                  "${createPostDetails.toTime}",
+                  createPostDetails.toTime,
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -157,7 +157,7 @@ class FollowMeCard extends StatelessWidget {
           ),
           SizedBox(height: width * 0.02),
           InkWell(
-            onTap: showRoute,
+            onTap: follow,
             child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -166,9 +166,9 @@ class FollowMeCard extends StatelessWidget {
                 ),
                 padding: EdgeInsets.symmetric(
                     vertical: width * 0.02, horizontal: width * 0.04),
-                child: const Text(
-                  "Follow Route",
-                  style: TextStyle(color: Colors.white),
+                child:  Text(
+                  "Follow Route    ${createPostDetails.followers}",
+                  style:const TextStyle(color: Colors.white),
                 )),
           ),
           SizedBox(height: width * 0.02),

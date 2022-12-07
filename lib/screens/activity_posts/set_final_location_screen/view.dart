@@ -20,7 +20,7 @@ class SetFinalLocationScreen extends StatefulWidget {
 }
 
 class _SetFinalLocationScreenState extends State<SetFinalLocationScreen> {
-  final createPostDetails=Get.find<CreatePost>();
+  final createPostDetails=Get.find<PostController>();
   Future<LatLong> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;

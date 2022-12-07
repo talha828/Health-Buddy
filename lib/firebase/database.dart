@@ -35,7 +35,7 @@ class Database{
       var snapshot=await database.doc(auth.currentUser!.uid).get();
       Map? data= snapshot.data();
       if (data!.isNotEmpty){
-        final user=Get.put(UserDetails());
+        final user=Get.put(UserController());
         user.name.value= data['name'];
         user.email.value= data['email'];
         user.uid.value= value.user!.uid.toString();
@@ -49,15 +49,16 @@ class Database{
     });
     return true;
   }
-  static Future<bool> createPost(CreatePost  createPostDetails)async{
+  static Future<bool> createPost(PostController  createPostDetails)async{
     FirebaseAuth auth= FirebaseAuth.instance;
     var database = FirebaseFirestore.instance.collection("activity_posts");
+    var stamp=DateTime.now().microsecondsSinceEpoch;
     await database
         .doc(createPostDetails.type.value)
         .collection(createPostDetails.type.value)
-        .doc()
+        .doc(stamp.toString())
         .set({
-      "name": createPostDetails.name.value,
+      "name": createPostDetails.userName.value,
       "type": createPostDetails.type.value,
       "uid":auth.currentUser!.uid,
       "fromAddress": createPostDetails.fromAddress.value,
@@ -70,7 +71,8 @@ class Database{
       "toLatLong": GeoPoint(
           createPostDetails.toLatLong.value.latitude,
           createPostDetails.toLatLong.value.longitude),
-      "timestamp": DateTime.now().microsecondsSinceEpoch
+      "timestamp": stamp,
+      "followers":0,
     });
     return true;
   }

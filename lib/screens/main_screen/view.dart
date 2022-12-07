@@ -21,7 +21,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   bool isLoading = false;
-  final userDetails=Get.find<UserDetails>();
+  final userController=Get.find<UserController>();
   List<String> coaches = ["Dog Training", "Dieting Training", "Counselling"];
 
   @override
@@ -54,12 +54,12 @@ class _MainScreenState extends State<MainScreen> {
             padding: EdgeInsets.zero,
             children: <Widget>[
                UserAccountsDrawerHeader(
-                accountName: Text(userDetails.name.value.toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                accountEmail: Text(userDetails.email.value,style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                accountName: Text(userController.name.value.toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                accountEmail: Text(userController.email.value,style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Text(
-                    userDetails.name.value.substring(0,1).toUpperCase(),
+                    userController.name.value.substring(0,1).toUpperCase(),
                     style: const TextStyle(fontSize: 40.0,color: Colors.red),
                   ),
                 ),
@@ -132,7 +132,7 @@ class _MainScreenState extends State<MainScreen> {
                     itemBuilder: (index, selectedIndex) {
                       final category = categories[index];
                       return InkWell(
-                        onTap: ()=>Get.to(const ViewPostsScreen()),
+                        onTap: ()=>Get.to(ViewPostsScreen(type: category.name,)),
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: width * 0.02),
                           child: Column(

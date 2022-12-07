@@ -17,7 +17,7 @@ class PostTimeDetailsScreen extends StatefulWidget {
 class _PostTimeDetailsScreenState extends State<PostTimeDetailsScreen> {
   TimeOfDay _time = TimeOfDay.now();
   bool iosStyle = true;
-  final createPostDetails=Get.find<CreatePost>();
+  final createPostDetails=Get.find<PostController>();
   void onTimeChanged(TimeOfDay newTime) {
     setState(() {
       _time = newTime;
