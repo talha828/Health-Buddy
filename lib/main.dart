@@ -16,8 +16,6 @@ void main() async{
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  // await Stripe.instance.applySettings();
-  // Stripe.merchantIdentifier = 'any string works';
   runApp(const MyApp());
 }
 
@@ -38,5 +36,5 @@ class MyApp extends StatelessWidget {
       ),
       home: const SplashScreen(),
     );
-  }
+  }            
 }

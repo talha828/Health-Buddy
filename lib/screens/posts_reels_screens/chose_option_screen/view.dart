@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/screens/posts_reels_screens/watch_posts/view.dart';
+import 'package:health_buddy/screens/social_post_screen/view.dart';
 
 class ChoseOptionScreen extends StatefulWidget {
   const ChoseOptionScreen({Key? key}) : super(key: key);
@@ -50,6 +51,7 @@ class _ChoseOptionScreenState extends State<ChoseOptionScreen> {
               const Divider(),
               //create posts
               ListTile(
+                onTap: ()=>Get.to(const CreateSocialPostScreen()),
                 leading: Image.asset(
                   "assets/image/new-post.png",
                   scale: 15,

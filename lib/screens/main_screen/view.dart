@@ -22,7 +22,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   bool isLoading = false;
   final userController=Get.find<UserController>();
-  List<String> coaches = ["Dog Training", "Dieting Training", "Counselling"];
+  List<String> coaches = ["Dog Training","Gym Training", "Dieting Training", "Counselling"];
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +74,6 @@ class _MainScreenState extends State<MainScreen> {
                 leading:const Icon(Icons.post_add), title:const Text("Post"),
                 onTap: () {
                   Get.to(const ChoseOptionScreen());
-                  //Navigator.pop(context);
-                },
-              ),
-
-              ListTile(
-                leading:const Icon(Icons.follow_the_signs), title:const Text("I am Trainer"),
-                onTap: () {
-                 Get.to(const IamTrainerScreen());
                   //Navigator.pop(context);
                 },
               ),
@@ -175,8 +167,9 @@ class _MainScreenState extends State<MainScreen> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.06),
                     child: AnimatedList(
+                      physics:const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      initialItemCount: 3,
+                      initialItemCount: coaches.length,
                       itemBuilder: (context, index, animation) {
                         return Column(
                           children: [
@@ -220,7 +213,6 @@ class _MainScreenState extends State<MainScreen> {
     Category(image: "assets/image/gym_friends.png", name: "Gym Buddy "),
     Category(image: "assets/image/walking_dog.png", name: "Walking Dog"),
     Category(image: "assets/image/walking.png", name: "Dessert"),
-    Category(image: "assets/image/diet.png", name: "Lamb"),
   ];
 }
 
