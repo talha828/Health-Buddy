@@ -4,9 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:health_buddy/screens/chat_room_screen/view.dart';
-import 'package:health_buddy/screens/gym_buddies_screen/view.dart';
-import 'package:health_buddy/screens/splash_screen/view.dart';
+import 'package:health_buddy/screens/common/get_start_screen/view.dart';
+import 'package:health_buddy/screens/user/splash_screen/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
         primaryTextTheme:
             GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      home: const SplashScreen(),
+      home: const GetStartScreen(),
     );
   }            
 }

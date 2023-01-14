@@ -7,8 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/model/create_post_model.dart';
 import 'package:health_buddy/model/user_model.dart';
-import 'package:health_buddy/screens/main_screen/view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../screens/user/main_screen/view.dart';
 
 class Database{
   static Future<bool>signUp(String name,String email,String password,)async{
