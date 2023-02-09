@@ -5,18 +5,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:health_buddy/firebase/database.dart';
 import 'package:health_buddy/screens/common/signup_screen/view.dart';
+import 'package:health_buddy/screens/trainer/signup_screen/view.dart';
 import 'package:health_buddy/widgets/health_button.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:health_buddy/widgets/health_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class TrainerLoginScreen extends StatefulWidget {
+  const TrainerLoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<TrainerLoginScreen> createState() => _TrainerLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _TrainerLoginScreenState extends State<TrainerLoginScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -24,11 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool? checkBox = true;
   bool isLoading = false;
   setLoading(bool value){
-   setState(() {
-    isLoading=value;
-   });
+    setState(() {
+      isLoading=value;
+    });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -109,18 +110,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       HealthButton(
-                        width: width,
-                        login: login,
-                        onTap: ()async{
-                          setLoading(true);
-                          if(_formKey.currentState!.validate()){
-                            await Database.login(email.text, password.text.toString()).then((value) => setLoading(false)).catchError((e){
-                              setLoading(false);
-                              print(e.message.toString());
-                              Fluttertoast.showToast(msg: "Error: ${e.message}");
-                            });
+                          width: width,
+                          login: login,
+                          onTap: ()async{
+                            setLoading(true);
+                            if(_formKey.currentState!.validate()){
+                              await Database.trainerLogin(email.text, password.text.toString()).then((value) => setLoading(false)).catchError((e){
+                                setLoading(false);
+                                print(e.message.toString());
+                                Fluttertoast.showToast(msg: "Error: ${e.message}");
+                              });
+                            }
                           }
-                        }
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -130,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: TextStyle(color: Colors.grey),
                           ),
                           InkWell(
-                            onTap: () => Get.to(const SignUpScreen()),
+                            onTap: () => Get.to(const TrainerSignUpScreen()),
                             child: const Text(
                               "SignUp",
                               style: TextStyle(

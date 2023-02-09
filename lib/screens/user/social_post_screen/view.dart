@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -23,6 +25,7 @@ class _CreateSocialPostScreenState extends State<CreateSocialPostScreen> {
   bool isImage=false;
   late File image;
   final userController=Get.find<UserController>();
+
 
   postData()async{
     var database=FirebaseFirestore.instance.collection("posts");
@@ -58,7 +61,6 @@ class _CreateSocialPostScreenState extends State<CreateSocialPostScreen> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text(
           "Post",
           style: TextStyle(color: Colors.red),
@@ -81,7 +83,7 @@ class _CreateSocialPostScreenState extends State<CreateSocialPostScreen> {
           }else{
             Fluttertoast.showToast(msg: "Image Not Found");
           }
-        },child: Text("Publish"),),
+        },child:const Text("Publish"),),
       ),
       body: SingleChildScrollView(
         child: Container(

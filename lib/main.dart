@@ -5,12 +5,12 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:health_buddy/screens/common/get_start_screen/view.dart';
-import 'package:health_buddy/screens/user/splash_screen/view.dart';
+import 'package:health_buddy/screens/common/splash_screen/view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-   Stripe.publishableKey = 'pk_test_51MCMhyIdD40UeF5nIOBmzIP897tYKj76kAWghlgMHAFER3HcCwjkajVNu5KvjGbSAXHM3uFjrCT79sERcPw70SHR00Jkgdl8WH';
+   // Stripe.publishableKey = 'pk_test_51MCMhyIdD40UeF5nIOBmzIP897tYKj76kAWghlgMHAFER3HcCwjkajVNu5KvjGbSAXHM3uFjrCT79sERcPw70SHR00Jkgdl8WH';
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         primaryTextTheme:
             GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
-      home: const GetStartScreen(),
+      home: const SplashScreen(),
     );
   }            
 }

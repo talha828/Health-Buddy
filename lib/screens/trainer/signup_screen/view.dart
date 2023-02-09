@@ -1,45 +1,45 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/controller/trainer_details_controller.dart';
 import 'package:health_buddy/firebase/database.dart';
-import 'package:health_buddy/screens/common/signup_screen/view.dart';
+import 'package:health_buddy/screens/trainer/trainer_details_screen/view.dart';
+import 'package:health_buddy/screens/trainer/trainer_login_screen/view.dart';
 import 'package:health_buddy/widgets/health_button.dart';
 import 'package:health_buddy/widgets/health_loading_indicator.dart';
 import 'package:health_buddy/widgets/health_text_field.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../../common/login_screen/view.dart';
+
+class TrainerSignUpScreen extends StatefulWidget {
+  const TrainerSignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<TrainerSignUpScreen> createState() => _TrainerSignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _TrainerSignUpScreenState extends State<TrainerSignUpScreen> {
+
+  final trainer=Get.put(TrainerDetailsController());
+
+  TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-  String login = "Login Now";
-  bool? checkBox = true;
+  TextEditingController confirmPassword = TextEditingController();
   bool isLoading = false;
-  setLoading(bool value){
-   setState(() {
-    isLoading=value;
-   });
-  }
-  
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          alignment: Alignment.center,
-          children: [
-            SingleChildScrollView(
-              child: Container(
+        body: SingleChildScrollView(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
                 height: height,
                 padding: EdgeInsets.all(width * 0.1),
                 child: Form(
@@ -49,16 +49,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SvgPicture.asset(
-                        "assets/image/login.svg",
+                        "assets/image/signUp.svg",
                         width: width * 0.4,
                         height: width * 0.4,
                       ),
                       Text(
-                        "Login",
+                        "SignUp",
                         style: TextStyle(
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold,
                             fontSize: width * 0.08),
+                      ),
+                      HealthTextField(
+                        email: name,
+                        width: width,
+                        obscureText: false,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                        hintText: "Name",
                       ),
                       HealthTextField(
                         email: email,
@@ -78,77 +90,76 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your Password';
+                            return 'Please enter your password';
                           }
                           return null;
                         },
                         hintText: "Password",
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                  value: checkBox,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      checkBox = value;
-                                    });
-                                  }),
-                              Text(
-                                "Remember Me?",
-                                style: TextStyle(fontSize: width * 0.035),
-                              )
-                            ],
-                          ),
-                          Text(
-                            "Forget Password?",
-                            style: TextStyle(fontSize: width * 0.035),
-                          )
-                        ],
-                      ),
-                      HealthButton(
+                      HealthTextField(
+                        email: confirmPassword,
                         width: width,
-                        login: login,
-                        onTap: ()async{
-                          setLoading(true);
-                          if(_formKey.currentState!.validate()){
-                            await Database.login(email.text, password.text.toString()).then((value) => setLoading(false)).catchError((e){
-                              setLoading(false);
-                              print(e.message.toString());
-                              Fluttertoast.showToast(msg: "Error: ${e.message}");
-                            });
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your Confirm Password';
                           }
-                        }
+                          return null;
+                        },
+                        hintText: "Confirm Password",
                       ),
+                      HealthButton(width: width, login: "Next",onTap: ()async{
+
+                        // setLoading(true);
+                        if (_formKey.currentState!.validate()) {
+                          if(password.text==confirmPassword.text){
+                            trainer.name.value=name.text;
+                            trainer.email.value=email.text;
+                            trainer.password.value=password.text;
+                            Get.to(const TrainerDetailsScreen());
+                          }else{
+                            Fluttertoast.showToast(msg: "Your Password not match").then((value) => setLoading(false));
+                          }
+                        }else{
+                          // setLoading(false);
+                        }
+                      },),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Create New Account?  ",
+                            "Already Register?  ",
                             style: TextStyle(color: Colors.grey),
                           ),
                           InkWell(
-                            onTap: () => Get.to(const SignUpScreen()),
+                            onTap: () =>Get.to(()=>const TrainerLoginScreen()),
                             child: const Text(
-                              "SignUp",
+                              "SignIn",
                               style: TextStyle(
                                   color: Colors.blue,
                                   decoration: TextDecoration.underline),
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-            ),
-            isLoading ?const Positioned.fill(child: LoadingIndicator()) : Container()
-          ],
+              isLoading
+                  ? const Positioned.fill(child: LoadingIndicator())
+                  : Container()
+            ],
+          ),
         ),
       ),
     );
   }
+
+  void setLoading(bool value) {
+    setState(() {
+      isLoading = value;
+    });
+  }
 }
+

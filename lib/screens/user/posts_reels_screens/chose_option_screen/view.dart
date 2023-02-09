@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:health_buddy/screens/user/create_reel_screen/view.dart';
 import 'package:health_buddy/screens/user/posts_reels_screens/watch_posts/view.dart';
 import 'package:health_buddy/screens/user/social_post_screen/view.dart';
+import 'package:health_buddy/screens/user/watch_reels_screen/view.dart';
 
 class ChoseOptionScreen extends StatefulWidget {
   const ChoseOptionScreen({Key? key}) : super(key: key);
@@ -69,6 +71,7 @@ class _ChoseOptionScreenState extends State<ChoseOptionScreen> {
               const Divider(),
               // watch reels
               ListTile(
+                onTap: ()=>Get.to(const WatchReelsScreen()),
                 leading: Image.asset(
                   "assets/image/reels.png",
                   scale: 15,
@@ -86,6 +89,7 @@ class _ChoseOptionScreenState extends State<ChoseOptionScreen> {
               const Divider(),
               // create reels
               ListTile(
+                onTap: ()=>Get.to(const CreateReelScreen()),
                 leading: Image.asset(
                   "assets/image/rating.png",
                   scale: 12,
